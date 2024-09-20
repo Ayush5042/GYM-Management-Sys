@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Set Fee Packages | EnerGym</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="set-fee-package.css" />
+  </head>
+  <body>
+    <h1>Set Fee Packages</h1>
+    <form id="feePackageForm">
+      <label for="basicPlan">Basic Plan (Rs):</label>
+      <input type="number" id="basicPlan" required><br>
+
+      <label for="halfYearlyPlan">Half-Yearly Plan (Rs):</label>
+      <input type="number" id="halfYearlyPlan" required><br>
+
+      <label for="yearlyPlan">Yearly Plan (Rs):</label>
+      <input type="number" id="yearlyPlan" required><br>
+
+      <button type="submit">Set Packages</button>
+    </form>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDhVZ3cqgFPJkHraeNU-W_pyD_PWVde4Yk",
+        authDomain: "gymm-43503.firebaseapp.com",
+        projectId: "gymm-43503",
+        storageBucket: "gymm-43503.appspot.com",
+        messagingSenderId: "1052065572860",
+        appId: "1:1052065572860:web:e0505c6362bd3d4b247479"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // Form Submission
+      document.getElementById('feePackageForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const basicPlan = document.getElementById('basicPlan').value;
+        const halfYearlyPlan = document.getElementById('halfYearlyPlan').value;
+        const yearlyPlan = document.getElementById('yearlyPlan').value;
+
+        try {
+          // Store fee packages in Firestore
+          await db.collection('feePackages').doc('currentRates').set({
+            basicPlan: basicPlan,
+            halfYearlyPlan: halfYearlyPlan,
+            yearlyPlan: yearlyPlan
+          });
+
+          alert('Fee packages updated successfully!');
+        } catch (error) {
+          console.error("Error updating fee packages:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

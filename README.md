@@ -1,0 +1,2 @@
+# Gym-Management-System
+The Gym Management System is a digital platform designed to streamline the management of gyms by reducing the reliance on paper-based records, particularly for payment receipts. This system offers several modules catering to gym administrators and members, ensuring efficient gym management and enhanced communication between gym staff and members. The system uses HTML, CSS, JavaScript, and Firebase to manage data, store records, and provide seamless interaction for both admins and gym members.
